@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:8.0 # Imagem oficial do MySQL (versão 8.0)
+    container_name: nest_crud_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword # Senha do usuário root
+      MYSQL_DATABASE: nest_crud # Nome do banco de dados que será criado
+      MYSQL_USER: nest # Usuário adicional
+      MYSQL_PASSWORD: nest # Senha do usuário adicional
+    ports:
+      - "3306:3306" # Mapeando a porta 3306 para acesso ao MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql # Volume persistente para dados do MySQL
+
+volumes:
+  mysql_data: # Volume para armazenar dados do MySQL
