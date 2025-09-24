@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16 # Imagem oficial do MySQL (versão 8.0)
+    container_name: nest_crud_pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nest_crud # Nome do banco de dados que será criado
+      POSTGRES_USER: nest # Usuário adicional
+      POSTGRES_PASSWORD: nest # Senha do usuário adicional
+    ports:
+      - "3306:5432" # Mapeando a porta 5432 para acesso ao POSTGRES
+    volumes:
+      - pgdata_data:/var/lib/postgresql/data # Volume persistente para dados do POSTGRES
+
+volumes:
+  pgdata_data: # Volume para armazenar dados do POSTGRES
